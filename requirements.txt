@@ -12,13 +12,14 @@ macholib==1.8
 MarkupSafe==1.0
 numpy==1.13.3
 olefile==0.44
+OpenGLContext
 pefile==2017.11.5
 Pillow==4.3.0
 PyDispatcher==2.0.5
 PyInstaller==3.3
 PyOpenGL==3.1.0
 PyOpenGL-accelerate==3.1.0
-pypiwin32==220
+pypiwin32
 PyVRML97==2.3.0b1
 virtualenv==15.1.0
 Werkzeug==0.13
