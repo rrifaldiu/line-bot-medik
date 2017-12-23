@@ -12,3 +12,4 @@ $ pip install -r requirements.txt
 
 $ python app.py
 ```
+OpenGLContext==2.3.0b1
