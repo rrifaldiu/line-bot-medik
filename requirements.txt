@@ -12,7 +12,6 @@ macholib==1.8
 MarkupSafe==1.0
 numpy==1.13.3
 olefile==0.44
-OpenGLContext==2.3.0b1
 pefile==2017.11.5
 Pillow==4.3.0
 PyDispatcher==2.0.5
