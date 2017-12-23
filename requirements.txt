@@ -1,8 +1,8 @@
 line-bot-sdk
-flaskaltgraph==0.14
+altgraph==0.14
 click==6.7
 Cython==0.27.3
-Flask==0.12.2
+flask==0.12.2
 future==0.16.0
 glfw==1.4.0
 gunicorn==19.7.1
