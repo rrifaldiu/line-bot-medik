@@ -108,7 +108,7 @@ def handle_text_message(event):
                 ]
             )
             line_bot_api.push_message(event.source.user_id, TextSendMessage(text='Hello World!'))
-            # line_bot_api.push_message('U36bb6303be7a1563a7d27d0ee2234ea5', TextSendMessage(text='Hello World!!'))
+            line_bot_api.push_message('U36bb6303be7a1563a7d27d0ee2234ea5', TextSendMessage(text='Hello World!!'))
         else:
             line_bot_api.reply_message(
                 event.reply_token,
