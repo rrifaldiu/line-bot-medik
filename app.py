@@ -180,7 +180,7 @@ def handle_text_message(event):
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
                                                                     mode='date')),
-            ImageCarouselColumn(image_url='http://tinypic.com/r/35mfu2x/9',
+            ImageCarouselColumn(image_url='http://i65.tinypic.com/2r542o5.jpg',
                                 action=URITemplateAction(label='google',
                                                          uri='https://www.google.co.id/'))
         ])
