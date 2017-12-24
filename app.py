@@ -176,14 +176,14 @@ def handle_text_message(event):
                                 action=DatetimePickerTemplateAction(label='datetime',
                                                                     data='datetime_postback',
                                                                     mode='datetime')),
-            ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+            ImageCarouselColumn(image_url='http://oi65.tinypic.com/2r542o5.jpg',
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
-                                                                    mode='date')),
-            ImageCarouselColumn(image_url='http://i65.tinypic.com/2r542o5.jpg',
-                                action=DatetimePickerTemplateAction(label='time',
-                                                                    data='time_postback',
-                                                                    mode='time'))
+                                                                    mode='date'))#,
+            # ImageCarouselColumn(image_url='http://i65.tinypic.com/2r542o5.jpg',
+            #                     action=DatetimePickerTemplateAction(label='time',
+            #                                                         data='time_postback',
+            #                                                         mode='time'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
