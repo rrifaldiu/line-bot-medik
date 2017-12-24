@@ -55,6 +55,9 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('yCLqDYJLIiRo5xSfnc/9tmKbtKL9oEcBhzG8Mczc0WH+8B+/Q9PT0ifkMT+frqRsgAKYqB1/CVhwx7vWPLKP1nyZszn6gGdqQ0H1CgfLUxFhX2Wgreq3cFZw1D1km/IXBljdJyY4fOw5kyvSQpcu6gdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('62826fb39d7f3cb6a27f8573bc5e9b29')
 
+#INISIALISASI USER ID FALDI
+user_id_faldi = 'U36bb6303be7a1563a7d27d0ee2234ea5'
+
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
@@ -108,11 +111,13 @@ def handle_text_message(event):
                 ]
             )
             line_bot_api.push_message(event.source.user_id, TextSendMessage(text='Hello World!'))
-            line_bot_api.push_message('U36bb6303be7a1563a7d27d0ee2234ea5', TextSendMessage(text='Hello World!!'))
+            line_bot_api.push_message(user_id_faldi, TextSendMessage(text='Hello World!!'))
         else:
             line_bot_api.reply_message(
                 event.reply_token,
                 TextMessage(text="Bot can't use profile API without user ID"))
+    # elif text == 'menu':
+
     elif text == 'bye':
         if isinstance(event.source, SourceGroup):
             line_bot_api.reply_message(
@@ -174,7 +179,10 @@ def handle_text_message(event):
             ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
-                                                                    mode='date'))
+                                                                    mode='date')),
+            ImageCarouselColumn(image_url='http://i64.tinypic.com/35mfu2x.jpg',
+                                action=URITemplateAction(label='google',
+                                                         uri='https://www.google.co.id/'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
