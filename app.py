@@ -181,8 +181,9 @@ def handle_text_message(event):
                                                                     data='date_postback',
                                                                     mode='date')),
             ImageCarouselColumn(image_url='http://i65.tinypic.com/2r542o5.jpg',
-                                action=URITemplateAction(label='google',
-                                                         uri='https://www.google.co.id/'))
+                                action=DatetimePickerTemplateAction(label='time',
+                                                                    data='time_postback',
+                                                                    mode='time'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
@@ -297,6 +298,9 @@ def handle_postback(event):
     elif event.postback.data == 'date_postback':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.postback.params['date']))
+    elif event.postback.data == 'time_postback':
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=event.postback.params['time']))
 
 
 @handler.add(BeaconEvent)
