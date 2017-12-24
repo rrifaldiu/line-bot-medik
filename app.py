@@ -107,6 +107,8 @@ def handle_text_message(event):
                     )
                 ]
             )
+            line_bot_api.push_message(event.source.user_id, TextSendMessage(text='Hello World!'))
+            line_bot_api.push_message('ri.fald', TextSendMessage(text='Hello World!!'))
         else:
             line_bot_api.reply_message(
                 event.reply_token,
