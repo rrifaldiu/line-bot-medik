@@ -102,6 +102,9 @@ def handle_text_message(event):
                     TextSendMessage(
                         text='Status message: ' + profile.status_message
                     )
+                    TextSendMessage(
+                        text='User ID: ' + event.source.user_id
+                    )
                 ]
             )
         else:
