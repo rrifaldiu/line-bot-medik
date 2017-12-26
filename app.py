@@ -65,7 +65,7 @@ user_id_obat_1 = '' #kahfi
 user_id_obat_2 = '' #rani
 user_id_tft_1 = '' #ivansa
 user_id_tft_2 = '' #fathin ?????
-user_id_humas
+user_id_humas = '' #atsila
 
 #RESOURCE - IMAGE
 image_menumedik_tandu = 'hehe'
