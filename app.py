@@ -55,8 +55,23 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('yCLqDYJLIiRo5xSfnc/9tmKbtKL9oEcBhzG8Mczc0WH+8B+/Q9PT0ifkMT+frqRsgAKYqB1/CVhwx7vWPLKP1nyZszn6gGdqQ0H1CgfLUxFhX2Wgreq3cFZw1D1km/IXBljdJyY4fOw5kyvSQpcu6gdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('62826fb39d7f3cb6a27f8573bc5e9b29')
 
-#INISIALISASI USER ID FALDI
-user_id_faldi = 'U36bb6303be7a1563a7d27d0ee2234ea5'
+#SEGALA INISIALISASI ADA DI SINI HEHEHE
+
+#INISIALISASI USER ID
+user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #daldi
+user_id_tandu_1 ='' #ilham
+user_id_tandu_2 = '' #sarah
+user_id_obat_1 = '' #kahfi
+user_id_obat_2 = '' #rani
+user_id_tft_1 = '' #ivansa
+user_id_tft_2 = '' #fathin ?????
+user_id_humas
+
+#RESOURCE - IMAGE
+image_menumedik_tandu = 'hehe'
+image_menumedik_obat = 'hehe'
+image_menumedik_tft = 'hehe'
+image_menumedik_lain = 'hehe'
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -94,6 +109,12 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
 
+    # if text == 'Menu medik':
+    #     TextSendMessage(
+    #         text='Halo! Selamat datang di menu OA Medik!\n\nSilahkan pilih menu yang Anda inginkan'
+    #     )
+
+    #el
     if text == 'profile':
         if isinstance(event.source, SourceUser):
             profile = line_bot_api.get_profile(event.source.user_id)
@@ -116,6 +137,15 @@ def handle_text_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextMessage(text="Bot can't use profile API without user ID"))
+    
+    elif text == 'imagewithurl':
+        line_bot_api.reply_message(
+                event.reply_token,
+                ImageSendMessage(
+                    original_content_url = 'https://image.ibb.co/btcPjm/10241024.jpg',
+                    preview_image_url = 'https://image.ibb.co/bJPgVR/240240.jpg'
+        ))
+
     # elif text == 'menu':
 
     elif text == 'bye':
@@ -185,9 +215,6 @@ def handle_text_message(event):
             #                                                         data='time_postback',
             #                                                         mode='time'))
         ])
-        template_message = TemplateSendMessage(
-            alt_text='ImageCarousel alt text', template=image_carousel_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'imagemap':
         pass
     else:
