@@ -208,7 +208,7 @@ def handle_text_message(event):
                                 action=DatetimePickerTemplateAction(label='datetime',
                                                                     data='datetime_postback',
                                                                     mode='datetime')),
-            ImageCarouselColumn(image_url='https://image.ibb.co/hiLApm/1040',
+            ImageCarouselColumn(image_url='https://image.ibb.co/hiLApm/1040.jpg',
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
                                                                     mode='date'))
@@ -216,7 +216,7 @@ def handle_text_message(event):
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
         line_bot_api.reply_message(event.reply_token, template_message)
-        
+
 
          # 
 
