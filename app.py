@@ -141,6 +141,7 @@ def handle_text_message(event):
     elif text == 'imagewithurl':
         line_bot_api.reply_message(
             event.reply_token, [
+                TextSendMessage(text = 'Nyampesini kahh?!'),
                 ImageSendMessage(
                     original_content_url='https://image.ibb.co/bJPgVR/240240.jpg',
                     preview_image_url='https://image.ibb.co/bJPgVR/240240.jpg'
