@@ -142,7 +142,7 @@ def handle_text_message(event):
         line_bot_api.reply_message(
             event.reply_token, [
                 ImageSendMessage(
-                    original_content_url = 'https://image.ibb.co/btcPjm/10241024.jpg',
+                    original_content_url = 'https://image.ibb.co/bJPgVR/240240.jpg',
                     preview_image_url = 'https://image.ibb.co/bJPgVR/240240.jpg'
                 )
             ]
@@ -209,6 +209,14 @@ def handle_text_message(event):
                                                                     data='datetime_postback',
                                                                     mode='datetime')),
             ImageCarouselColumn(image_url='https://image.ibb.co/hiLApm/1040.jpg',
+                                action=DatetimePickerTemplateAction(label='date',
+                                                                    data='date_postback',
+                                                                    mode='date')),
+            ImageCarouselColumn(image_url='https://image.ibb.co/btcPjm/10241024.jpg',
+                                action=DatetimePickerTemplateAction(label='date',
+                                                                    data='date_postback',
+                                                                    mode='date')),
+            ImageCarouselColumn(image_url='https://image.ibb.co/bJPgVR/240240.jpg',
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
                                                                     mode='date'))
