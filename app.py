@@ -143,8 +143,7 @@ def handle_text_message(event):
             event.reply_token, [
                 TextSendMessage(text = 'Nyampesini kahh?!'),
                 ImageSendMessage(
-                    original_content_url='https://image.ibb.co/bJPgVR/240240.jpg',
-                    preview_image_url='https://image.ibb.co/bJPgVR/240240.jpg'
+                    original_content_url='https://image.ibb.co/bJPgVR/240240.jpg', preview_image_url='https://image.ibb.co/bJPgVR/240240.jpg'
                 ),
                 TextSendMessage(text = 'Here you goo!')
             ]
