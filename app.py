@@ -141,15 +141,25 @@ def handle_text_message(event):
     
     elif text == 'imgwithurl':
         line_bot_api.reply_message(
-            event.reply_token, [
-                TextSendMessage(text = 'Nyampesini kahh?!'
-                ),
-                ImageSendMessage(
-                    original_content_url='https://via.placeholder.com/1024x1024', preview_image_url='https://via.placeholder.com/240x240'
-                ),
-                TextSendMessage(text = 'Here you goo!'
-                )
-            ]
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url='https://via.placeholder.com/1024x1024', preview_image_url='https://via.placeholder.com/240x240'
+            )
+        )
+    
+    elif text == 'img':
+        line_bot_api.reply_message(
+            event.reply_token, 
+            ImageSendMessage(
+                original_content_url='10241024.jpg', preview_image_url='240240.jpg'
+            )
+        )
+    elif text == 'imgwithslash':
+        line_bot_api.reply_message(
+            event.reply_token, 
+            ImageSendMessage(
+                original_content_url='/10241024.jpg', preview_image_url='/240240.jpg'
+            )
         )
 
     # elif text == 'menu':
