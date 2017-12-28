@@ -481,7 +481,7 @@ def handle_postback(event):
                 PostbackTemplateAction(label='List Obat', data='list_obat_pj'),
                 PostbackTemplateAction(label='Pinjam', data='form_obat_pj')
             ]),
-            CarouselColumn(title='Obat Satuan', text='Pilih obat-obatan tertentu yang Anda butuhkan (tidak harus sepaket)',
+            CarouselColumn(title='Obat Satuan', text='Pilih obat-obatan tertentu yang Anda butuhkan',
             thumbnail_image_url=imgurl_obat_pilih, actions=[
                 PostbackTemplateAction(label='List Obat', data='list_obat_pilih'),
                 PostbackTemplateAction(label='Pinjam', data='form_obat_pilih')
