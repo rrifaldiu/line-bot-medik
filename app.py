@@ -132,15 +132,17 @@ def handle_text_message(event):
                                             label='Hubungi kami', #data='Hubungi kami',
                                             text='Hubungi kami'))
         ])
-        template_message = TemplateSendMessage(
-            alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
+        # template_message = TemplateSendMessage(
+        #     alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
         line_bot_api.reply_message(
             event.reply_token, [
                 StickerSendMessage(
                     package_id='3',
                     sticker_id='242'
                 ),
-                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini')#,
+                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\n Silahkan pilih menu di bawah ini'),
+                TemplateSendMessage(
+                    alt_text='Menu medik', template=image_carousel_template)
                 #template_message
             ]
         )
