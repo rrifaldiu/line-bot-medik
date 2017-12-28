@@ -140,7 +140,7 @@ def handle_text_message(event):
                 #     package_id='3',
                 #     sticker_id='242'
                 # ),
-                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\nSilahkan pilih menu di bawah ini'),
+                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini'),
                 template_message
             ]
         )
