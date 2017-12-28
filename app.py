@@ -117,29 +117,29 @@ def handle_text_message(event):
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
-                                            label='Peminjaman tandu', #data='Peminjaman tandu',
+                                            label='Peminjaman tandu', data='ping',#data='Peminjaman tandu',
                                             text='Peminjaman tandu')),
             ImageCarouselColumn(image_url=imgurl_obat,
                                 action=PostbackTemplateAction(
-                                            label='Peminjaman obat', #data='Peminjaman obat',
+                                            label='Peminjaman obat', data='ping',#data='Peminjaman obat',
                                             text='Peminjaman obat')),
             ImageCarouselColumn(image_url=imgurl_tft,
                                 action=PostbackTemplateAction(
-                                            label='Pengadaan pelatihan medis', #data='Pengadaan pelatihan medis',
+                                            label='Pengadaan pelatihan medis', data='ping',#data='Pengadaan pelatihan medis',
                                             text='Pengadaan pelatihan medis')),
             ImageCarouselColumn(image_url=imgurl_humas,
                                 action=PostbackTemplateAction(
-                                            label='Hubungi kami', #data='Hubungi kami',
+                                            label='Hubungi kami', data='ping',#data='Hubungi kami',
                                             text='Hubungi kami'))
         ])
         template_message = TemplateSendMessage(
             alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
         line_bot_api.reply_message(
             event.reply_token, [
-                StickerSendMessage(
-                    package_id='3',
-                    sticker_id='242'
-                ),
+                # StickerSendMessage(
+                #     package_id='3',
+                #     sticker_id='242'
+                # ),
                 TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\nSilahkan pilih menu di bawah ini'),
                 template_message
             ]
