@@ -401,26 +401,13 @@ def handle_leave():
 def handle_postback(event):
     if event.postback.data == 'tandu':
         buttons_template = ButtonsTemplate(
-            title='Saya telah memahami SOP di atas', text='Klik tombol di bawah untuk melanjutkan', actions= [
+            title='Pastikan Anda telah memahami SOP di atas', text='Klik tombol di bawah untuk melanjutkan', actions= [
                 PostbackTemplateAction(
-                    label='Ya', data='form_tandu',
-                    text='Ya, Saya telah memahami SOP di atas. Dan saya tidak berbohong')
+                    label='Oke', data='form_tandu')
                 ]
-             )
+            )
         template_message = TemplateSendMessage(
-            alt_text='Buttons alt text', template=buttons_template)
-        # buttons_template = ButtonsTemplate(
-        #     title='My buttons sample', text='Hello, my buttons', actions=[
-        #         URITemplateAction(
-        #             label='Go to line.me', uri='https://line.me'),
-        #         PostbackTemplateAction(label='ping', data='ping'),
-        #         PostbackTemplateAction(
-        #             label='ping with text', data='ping',
-        #             text='ping'),
-        #         MessageTemplateAction(label='Translate Rice', text='米')
-        #     ])
-        template_message = TemplateSendMessage(
-            alt_text='Buttons alt text', template=buttons_template)
+            alt_text='Pahamilah SOP', template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='[SOP Peminjaman Tandu]\n' +
                                                     '\n' +
@@ -443,7 +430,164 @@ def handle_postback(event):
                                                     '\n' +
                                                     '9. Selama durasi peminjaman, peminjam melakukan sendiri pengencangan dan perawatan terhadap tandu. Saat peminjaman, peminjam dapat mengutus perwakilan untuk diberi pengarahan tentang cara pengencangan dan perawatan tandu.'
                                                 ),
-                                TextSendMessage(text='Bisa ga'),
+                                template_message
+                                ])
+    elif event.postback.data == 'obat':
+        buttons_template = ButtonsTemplate(
+            title='Pastikan Anda telah memahami SOP di atas', text='Klik tombol di bawah untuk melanjutkan', actions= [
+                PostbackTemplateAction(
+                    label='Oke', data='pilih_obat')
+                ]
+            )
+        template_message = TemplateSendMessage(
+            alt_text='Pahamilah SOP', template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text='[SOP Peminjaman Obat]\n' +
+                                                    '\n' +
+                                                    '1. Menghubungi OA Medik OSKM 2017 maksimal 3 hari sebelum peminjaman.\n' +
+                                                    '\n' +
+                                                    '2. Memperkenalkan diri serta menyampaikan tujuan peminjaman obat.\n' +
+                                                    '\n' +
+                                                    '3. Menyebutkan obat apa saja yang akan dipinjam.\n' +
+                                                    '\n' +
+                                                    '4. Peminjam menentukan lama waktu peminjaman obat. Peminjaman obat maksimal 14 hari dan jika terjadi keterlambatan dalam pengembalian obat, peminjam akan dikenakan sanksi yang akan diberitahukan lebih lanjut.(jika peminjam ingin meminjam lebih dari 14 hari dapat memperpanjang dengan menghubungi ke OA Medik)\n' +
+                                                    '\n' +
+                                                    '5. Peminjam memberikan jaminan peminjaman berupa KTM/KTP.\n' +
+                                                    '\n' +
+                                                    '6. Peminjam diwajibkan untuk menuliskan data penggunaan obat dengan format yang sudah ditentukan oleh Medik.\n' +
+                                                    '\n' +
+                                                    '7. Pengembalian obat dilakukan dengan menghubungi OA Medik sesuai dengan waktu yang telah ditentukan diawal peminjaman.\n' +
+                                                    '\n' +
+                                                    '8. Apabila obat yang dikembalikan rusak ataupun hilang, peminjam diharuskan mengganti obat tersebut\n' +
+                                                    '\n' +
+                                                    '9. Apabila obat yang dikembalikan habis dikarenakan pemakaian, kemasan obat tersebut tetap harus disertakan saat pengembalian obat. Apabila kemasan hilang, peminjam dianggap menghilangkan obat.'
+                                                ),
+                                template_message
+                                ])
+    elif event.postback.data == 'pilih_obat':
+        carousel_template = CarouselTemplate(columns=[
+            CarouselColumn(title='Obat Base', text='Obat yang digunakan di Base saat OSKM',
+            thumbnail_image_url=imgurl_obat_base, actions=[
+                PostbackTemplateAction(label='List Obat', data='list_obat_base'),
+                PostbackTemplateAction(label='Pinjam', data='form_obat_base')
+            ]),
+            CarouselColumn(title='Obat PJ Obat', text='Obat yang dibawa oleh PJ Obat saat OSKM',
+            thumbnail_image_url=imgurl_obat_base, actions=[
+                PostbackTemplateAction(label='List Obat', data='list_obat_pj'),
+                PostbackTemplateAction(label='Pinjam', data='form_obat_pj')
+            ]),
+            CarouselColumn(title='Obat Satuan', text='Pilih obat-obatan tertentu yang Anda butuhkan (tidak harus sepaket)',
+            thumbnail_image_url=imgurl_obat_base, actions=[
+                PostbackTemplateAction(label='List Obat', data='list_obat_pilih'),
+                PostbackTemplateAction(label='Pinjam', data='form_obat_pilih')
+            ])
+        ])
+        template_message = TemplateSendMessage(
+            alt_text='Carousel alt text', template=carousel_template)
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text='Silahkan pilih jenis obat yang ingin Anda pinjam\n'),
+                template_message
+            ]
+        )
+    elif event.postback.data == 'list_obat_base':
+        buttons_template = ButtonsTemplate(
+            text='Kembali ke pemilihan obat', actions= [
+                PostbackTemplateAction(
+                    label='Kembali', data='pilih_obat')
+                ]
+            )
+        template_message = TemplateSendMessage(
+            alt_text='Kembali ke pemilihan obat', template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text='[List Obat Base]\n' +
+                                                    '\n' +
+                                                    '1. Bioplacenton\n' +
+                                                    '2. Thrombophob\n' +
+                                                    '3. Counterpain Patch Hot\n' +
+                                                    '4. Counterpain Cool\n' +
+                                                    '5. Ethyl Chloride\n' +
+                                                    '6. Rivanol\n' +
+                                                    '7. Oxycan\n' +
+                                                    '8. Imboost\n' +
+                                                    '9. Sangobion\n' +
+                                                    '10. Mylanta Cair\n' +
+                                                    '11. Ranitidin Cair\n' +
+                                                    '12. Fludane\n' +
+                                                    '13. Spasminal\n' +
+                                                    '14. Parasetamol\n' +
+                                                    '15. Feminax\n' +
+                                                    '16. Ibuprofen\n' +
+                                                    '17. Oralit\n' +
+                                                    '18. Sanadryl\n' +
+                                                    '19. Komix\n' +
+                                                    '20. Salbutamol Syrup\n' +
+                                                    '\n' +
+                                                    'Perlu diingat bahwa obat-obat tersebut mungkin tidak tersedia karena habis atau sedang dipinjam. Info lebih lanjut akan dihubungi setelah pengisian form peminjaman.'
+                                                ),
+                                template_message
+                                ])
+    elif event.postback.data == 'list_obat_pj':
+        buttons_template = ButtonsTemplate(
+            text='Kembali ke pemilihan obat', actions= [
+                PostbackTemplateAction(
+                    label='Kembali', data='pilih_obat')
+                ]
+            )
+        template_message = TemplateSendMessage(
+            alt_text='Kembali ke pemilihan obat', template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text='[List Obat PJ Obat]\n' +
+                                                    '\n' +
+                                                    '1. Bioplacenton\n' +
+                                                    '2. Thrombophob\n' +
+                                                    '3. Counterpain\n' +
+                                                    '4. Ethyl Chloride\n' +
+                                                    '5. Rivanol\n' +
+                                                    '6. Oxycan\n' +
+                                                    '7. Sangobion\n' +
+                                                    '8. Mylanta Cair\n' +
+                                                    '9. Ranitidin Cair\n' +
+                                                    '10. Komix\n' +
+                                                    '\n' +
+                                                    'Perlu diingat bahwa obat-obat tersebut mungkin tidak tersedia karena habis atau sedang dipinjam. Info lebih lanjut akan dihubungi setelah pengisian form peminjaman.'
+                                                ),
+                                template_message
+                                ])
+    elif event.postback.data == 'list_obat_pilih':
+        buttons_template = ButtonsTemplate(
+            text='Kembali ke pemilihan obat', actions= [
+                PostbackTemplateAction(
+                    label='Kembali', data='pilih_obat')
+                ]
+            )
+        template_message = TemplateSendMessage(
+            alt_text='Kembali ke pemilihan obat', template=buttons_template)
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text='[List Obat Satuan]\n' +
+                                                    '\n' +
+                                                    '1. Bioplacenton\n' +
+                                                    '2. Thrombophob\n' +
+                                                    '3. Counterpain Patch Hot\n' +
+                                                    '4. Counterpain Cool\n' +
+                                                    '5. Ethyl Chloride\n' +
+                                                    '6. Rivanol\n' +
+                                                    '7. Oxycan\n' +
+                                                    '8. Imboost\n' +
+                                                    '9. Sangobion\n' +
+                                                    '10. Mylanta Cair\n' +
+                                                    '11. Ranitidin Cair\n' +
+                                                    '12. Fludane\n' +
+                                                    '13. Spasminal\n' +
+                                                    '14. Parasetamol\n' +
+                                                    '15. Feminax\n' +
+                                                    '16. Ibuprofen\n' +
+                                                    '17. Oralit\n' +
+                                                    '18. Sanadryl\n' +
+                                                    '19. Komix\n' +
+                                                    '20. Salbutamol Syrup\n' +
+                                                    '\n' +
+                                                    'Perlu diingat bahwa obat-obat tersebut mungkin tidak tersedia karena habis atau sedang dipinjam. Info lebih lanjut akan dihubungi setelah pengisian form peminjaman.'
+                                                ),
                                 template_message
                                 ])
     elif event.postback.data == 'form_tandu':
