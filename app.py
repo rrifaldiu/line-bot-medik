@@ -401,7 +401,7 @@ def handle_leave():
 def handle_postback(event):
     if event.postback.data == 'tandu':
         buttons_template = ButtonsTemplate(
-            title='"Saya telah memahami SOP di atas"', text='Klik tombol di bawah untuk melanjutkan', actions=
+            title='Saya telah memahami SOP di atas', text='Klik tombol di bawah untuk melanjutkan', actions=
                 PostbackTemplateAction(
                     label='Ya', data='form_tandu',
                     text='Ya, Saya telah memahami SOP di atas. Dan saya tidak berbohong')
@@ -430,7 +430,8 @@ def handle_postback(event):
                                                     '\n' +
                                                     '9. Selama durasi peminjaman, peminjam melakukan sendiri pengencangan dan perawatan terhadap tandu. Saat peminjaman, peminjam dapat mengutus perwakilan untuk diberi pengarahan tentang cara pengencangan dan perawatan tandu.'
                                                 ),
-                                template_message
+                                TextSendMessage(text='Bisa ga')
+                                #template_message
                                 ])
     elif event.postback.data == 'form_tandu':
         line_bot_api.reply_message(
