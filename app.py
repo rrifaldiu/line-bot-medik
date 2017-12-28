@@ -77,6 +77,15 @@ imgurl_obat_pilih = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/
 imgurl_tft = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tft/tft.jpg'
 imgurl_humas = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/humas/humas.jpg'
 
+form_template = '\n' +
+                'Nama : \n' +
+                'Jurusan : \n' +
+                'ID Line : \n' +
+                'Lembaga : \n' +
+                'Tujuan peminjaman : \n' +
+                'Tanggal peminjaman : \n' +
+                'Tanggal pengembalian : '
+
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
 
@@ -394,7 +403,6 @@ def handle_join(event):
 def handle_leave():
     app.logger.info("Got leave event")
 
-
 @handler.add(PostbackEvent)
 def handle_postback(event):
     if event.postback.data == 'tandu':
@@ -590,14 +598,7 @@ def handle_postback(event):
                                 ])
     elif event.postback.data == 'form_tandu':
         line_bot_api.reply_message(
-            event.reply_token, [TextSendMessage(text= '[Form Peminjaman Tandu]\n' +
-                                            '\n' +
-                                            'Nama : \n' +
-                                            'Jurusan : \n' +
-                                            'ID Line : \n' +
-                                            'Lembaga : \n' +
-                                            'Tujuan peminjaman : \n' +
-                                            'Tanggal peminjaman : '
+            event.reply_token, [TextSendMessage(text= '[Form Peminjaman Tandu]\n' + form_template
                                 ),
                                 TextSendMessage(text= 'Mohon isi form di atas dan pastikan form yang Anda isikan sudah benar\n' +
                                             'Form yang dikirim akan langsung dimasukkan ke dalam sistem'
