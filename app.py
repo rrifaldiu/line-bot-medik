@@ -261,7 +261,7 @@ def handle_text_message(event):
             ImageCarouselColumn(image_url=imgurl_humas,
                                 action=PostbackTemplateAction(
                                     label='pingwithtext',
-                                    text='ping',
+                                    #text='ping',
                                     data='ping'
                                 )
                             )
