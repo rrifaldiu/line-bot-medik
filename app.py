@@ -117,17 +117,17 @@ def handle_text_message(event):
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
-                                            label='Peminjaman tandu',
+                                            label='Pinjam tandu',
                                             text='Peminjaman tandu',
                                             data='tandu')),
             ImageCarouselColumn(image_url=imgurl_obat,
                                 action=PostbackTemplateAction(
-                                            label='Peminjaman obat', #data='Peminjaman obat',
+                                            label='Pinjam obat', #data='Peminjaman obat',
                                             text='Peminjaman obat',
                                             data='ping')),
             ImageCarouselColumn(image_url=imgurl_tft,
                                 action=PostbackTemplateAction(
-                                            label='Pelatihan medis',
+                                            label='TFT medik',
                                             #text='Pengadaan pelatihan medis',
                                             data='ping')),
             ImageCarouselColumn(image_url=imgurl_humas,
