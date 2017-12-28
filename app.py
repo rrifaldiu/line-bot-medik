@@ -77,14 +77,14 @@ imgurl_obat_pilih = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/
 imgurl_tft = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tft/tft.jpg'
 imgurl_humas = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/humas/humas.jpg'
 
-form_template = '\n' +
+form_template = ('\n' +
                 'Nama : \n' +
                 'Jurusan : \n' +
                 'ID Line : \n' +
                 'Lembaga : \n' +
                 'Tujuan peminjaman : \n' +
                 'Tanggal peminjaman : \n' +
-                'Tanggal pengembalian : '
+                'Tanggal pengembalian : ')
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -478,12 +478,12 @@ def handle_postback(event):
                 PostbackTemplateAction(label='Pinjam', data='form_obat_base')
             ]),
             CarouselColumn(title='Obat PJ Obat', text='Obat yang dibawa oleh PJ Obat saat OSKM',
-            thumbnail_image_url=imgurl_obat_base, actions=[
+            thumbnail_image_url=imgurl_obat_pj, actions=[
                 PostbackTemplateAction(label='List Obat', data='list_obat_pj'),
                 PostbackTemplateAction(label='Pinjam', data='form_obat_pj')
             ]),
             CarouselColumn(title='Obat Satuan', text='Pilih obat-obatan tertentu yang Anda butuhkan (tidak harus sepaket)',
-            thumbnail_image_url=imgurl_obat_base, actions=[
+            thumbnail_image_url=imgurl_obat_pilih, actions=[
                 PostbackTemplateAction(label='List Obat', data='list_obat_pilih'),
                 PostbackTemplateAction(label='Pinjam', data='form_obat_pilih')
             ])
