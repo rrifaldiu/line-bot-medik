@@ -451,7 +451,7 @@ def handle_postback(event):
             ])
     elif event.postback.data == 'ping':
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text='pong'))
+            event.reply_token, [TextSendMessage(text='pong'),TextSendMessage(text='pong2')])
     elif event.postback.data == 'datetime_postback':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.postback.params['datetime']))
