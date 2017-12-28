@@ -113,7 +113,7 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
 
-    if text == 'start!':
+    if text == 'start':
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
