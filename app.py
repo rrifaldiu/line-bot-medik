@@ -113,7 +113,7 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
 
-    if text == 'start':
+    if text == 'menu':
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
@@ -148,6 +148,26 @@ def handle_text_message(event):
                 template_message
             ]
         )
+    elif text == 'Ya, Saya telah memahami SOP di atas. Dan saya tidak berbohong':
+        pass
+    elif text.startswith('[Form Peminjaman Tandu]'):
+        profile = line_bot_api.get_profile(event.source.user_id)
+        line_bot_api.push_message(user_id_admin, [
+            TextSendMessage(
+                text='Mendapat pesan baru dari ' + profile.display_name
+            ),
+            TextSendMessage(
+                text=text + '\n\n-----------\nUserId :'
+            ),
+            TextSendMessage(
+                text=profile.user_id
+            )
+        ])
+        line_bot_api.reply_message(
+                event.reply_token, TextSendMessage(
+                        text='Form telah dikirimkan.\n\nKami akan memproses secepatnya. Harap bersabar dan menunggu'
+                    )
+            )
     elif text == 'profile':
         if isinstance(event.source, SourceUser):
             profile = line_bot_api.get_profile(event.source.user_id)
@@ -176,21 +196,6 @@ def handle_text_message(event):
             event.reply_token,
             ImageSendMessage(
                 original_content_url=imgurl_tft, preview_image_url='https://via.placeholder.com/240x240'
-            )
-        )
-    
-    elif text == 'img':
-        line_bot_api.reply_message(
-            event.reply_token, 
-            ImageSendMessage(
-                original_content_url='10241024.jpg', preview_image_url='240240.jpg'
-            )
-        )
-    elif text == 'imgwithslash':
-        line_bot_api.reply_message(
-            event.reply_token, 
-            ImageSendMessage(
-                original_content_url='/10241024.jpg', preview_image_url='/240240.jpg'
             )
         )
 
@@ -272,7 +277,7 @@ def handle_text_message(event):
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
-        line_bot_api.reply_message(event.reply_token, [template_message, TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini'),
+        line_bot_api.reply_message(event.reply_token, [template_message, TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini \uDBC0'),
                 ])
 
 
@@ -395,6 +400,14 @@ def handle_leave():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     if event.postback.data == 'tandu':
+        buttons_template = ButtonsTemplate(
+            title='"Saya telah memahami SOP di atas"', text='Klik tombol di bawah untuk melanjutkan', actions=
+                PostbackTemplateAction(
+                    label='Ya', data='form_tandu',
+                    text='Ya, Saya telah memahami SOP di atas. Dan saya tidak berbohong')
+             )
+        template_message = TemplateSendMessage(
+            alt_text='Buttons alt text', template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='[SOP Peminjaman Tandu]\n' +
                                                     '\n' +
@@ -416,9 +429,25 @@ def handle_postback(event):
                                                     '8. Peminjam diminta untuk mencuci mitela yang terdapat pada tandu apabila kotor setelah penggunaan.\n' +
                                                     '\n' +
                                                     '9. Selama durasi peminjaman, peminjam melakukan sendiri pengencangan dan perawatan terhadap tandu. Saat peminjaman, peminjam dapat mengutus perwakilan untuk diberi pengarahan tentang cara pengencangan dan perawatan tandu.'
-                                                )
-
+                                                ),
+                                template_message
                                 ])
+    elif event.postback.data == 'form_tandu':
+        line_bot_api.reply_message(
+            event.reply_token, [TextSendMessage(text= '[Form Peminjaman Tandu]\n' +
+                                            '\n' +
+                                            'Nama : \n' +
+                                            'Jurusan : \n' +
+                                            'ID Line : \n' +
+                                            'Lembaga : \n' +
+                                            'Tujuan peminjaman : \n' +
+                                            'Tanggal peminjaman : '
+                                ),
+                                TextSendMessage(text= 'Mohon isi form di atas dan pastikan form yang Anda isikan sudah benar\n' +
+                                            'Form yang dikirim akan langsung dimasukkan ke dalam sistem'
+                                )
+
+            ])
     elif event.postback.data == 'ping':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text='pong'))
