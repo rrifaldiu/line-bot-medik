@@ -464,7 +464,7 @@ def handle_postback(event):
                                                     '\n' +
                                                     '7. Pengembalian obat dilakukan dengan menghubungi OA Medik sesuai dengan waktu yang telah ditentukan diawal peminjaman.\n' +
                                                     '\n' +
-                                                    '8. Apabila obat yang dikembalikan rusak ataupun hilang, peminjam diharuskan mengganti obat tersebut\n' +
+                                                    '8. Apabila obat yang dikembalikan rusak ataupun hilang, peminjam diharuskan mengganti obat tersebut'
                                                 ),
                                 TextSendMessage(text='9. Apabila obat yang dikembalikan habis dikarenakan pemakaian, kemasan obat tersebut tetap harus disertakan saat pengembalian obat. Apabila kemasan hilang, peminjam dianggap menghilangkan obat.'),                                            
                                 template_message
