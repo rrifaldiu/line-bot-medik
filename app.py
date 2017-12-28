@@ -125,15 +125,15 @@ def handle_text_message(event):
                                             text='Peminjaman obat')),
             ImageCarouselColumn(image_url=imgurl_tft,
                                 action=PostbackTemplateAction(
-                                            label='Pengadaan pelatihan medis', #data='Pengadaan pelatihan medis',
+                                            label='Pelatihan medis', #data='Pengadaan pelatihan medis',
                                             text='Pengadaan pelatihan medis')),
             ImageCarouselColumn(image_url=imgurl_humas,
                                 action=PostbackTemplateAction(
                                             label='Hubungi kami', #data='Hubungi kami',
                                             text='Hubungi kami'))
         ])
-        # template_message = TemplateSendMessage(
-        #     alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
+        template_message = TemplateSendMessage(
+            alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
         line_bot_api.reply_message(
             event.reply_token, [
                 StickerSendMessage(
@@ -141,9 +141,7 @@ def handle_text_message(event):
                     sticker_id='242'
                 ),
                 TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini'),
-                TemplateSendMessage(
-                    alt_text='Menu medik', template=image_carousel_template)
-                #template_message
+                template_message
             ]
         )
     elif text == 'profile':
@@ -248,19 +246,19 @@ def handle_text_message(event):
         line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'image_carousel':
         image_carousel_template = ImageCarouselTemplate(columns=[
-            ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+            ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=DatetimePickerTemplateAction(label='datetime',
                                                                     data='datetime_postback',
                                                                     mode='datetime')),
-            ImageCarouselColumn(image_url='https://image.ibb.co/hiLApm/1040.jpg',
+            ImageCarouselColumn(image_url=imgurl_obat,
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
                                                                     mode='date')),
-            ImageCarouselColumn(image_url='https://image.ibb.co/btcPjm/10241024.jpg',
+            ImageCarouselColumn(image_url=imgurl_tft,
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
                                                                     mode='date')),
-            ImageCarouselColumn(image_url='https://image.ibb.co/bJPgVR/240240.jpg',
+            ImageCarouselColumn(image_url=imgurl_humas,
                                 action=DatetimePickerTemplateAction(label='date',
                                                                     data='date_postback',
                                                                     mode='date'))
