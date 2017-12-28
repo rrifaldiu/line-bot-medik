@@ -143,8 +143,8 @@ def handle_text_message(event):
                     package_id='3',
                     sticker_id='242'
                 ),
-                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini'),
-                template_message
+                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\n Silahkan pilih menu di bawah ini')#,
+                # template_message
             ]
         )
     elif text == 'profile':
