@@ -408,6 +408,18 @@ def handle_postback(event):
         #      )
         # template_message = TemplateSendMessage(
         #     alt_text='Buttons alt text', template=buttons_template)
+        buttons_template = ButtonsTemplate(
+            title='My buttons sample', text='Hello, my buttons', actions=[
+                URITemplateAction(
+                    label='Go to line.me', uri='https://line.me'),
+                PostbackTemplateAction(label='ping', data='ping'),
+                PostbackTemplateAction(
+                    label='ping with text', data='ping',
+                    text='ping'),
+                MessageTemplateAction(label='Translate Rice', text='米')
+            ])
+        template_message = TemplateSendMessage(
+            alt_text='Buttons alt text', template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='[SOP Peminjaman Tandu]\n' +
                                                     '\n' +
@@ -430,8 +442,8 @@ def handle_postback(event):
                                                     '\n' +
                                                     '9. Selama durasi peminjaman, peminjam melakukan sendiri pengencangan dan perawatan terhadap tandu. Saat peminjaman, peminjam dapat mengutus perwakilan untuk diberi pengarahan tentang cara pengencangan dan perawatan tandu.'
                                                 ),
-                                TextSendMessage(text='Bisa ga')
-                                #template_message
+                                TextSendMessage(text='Bisa ga'),
+                                template_message
                                 ])
     elif event.postback.data == 'form_tandu':
         line_bot_api.reply_message(
