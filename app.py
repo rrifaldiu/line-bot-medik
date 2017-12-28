@@ -127,11 +127,12 @@ def handle_text_message(event):
                                             data='ping')),
             ImageCarouselColumn(image_url=imgurl_tft,
                                 action=PostbackTemplateAction(
-                                            label='Pelatihan medis', #data='Pengadaan pelatihan medis',
-                                            text='Pengadaan pelatihan medis')),
+                                            label='Pelatihan medis',
+                                            #text='Pengadaan pelatihan medis',
+                                            data='ping')),
             ImageCarouselColumn(image_url=imgurl_humas,
                                 action=PostbackTemplateAction(
-                                            label='Hubungi kami', #data='Hubungi kami',
+                                            label='Hubungi kami',
                                             text='Hubungi kami',
                                             data='tandu'))
         ])
@@ -143,8 +144,8 @@ def handle_text_message(event):
                     package_id='3',
                     sticker_id='242'
                 ),
-                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\n Silahkan pilih menu di bawah ini')#,
-                # template_message
+                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\n Silahkan pilih menu di bawah ini'),
+                template_message
             ]
         )
     elif text == 'profile':
