@@ -59,20 +59,23 @@ handler = WebhookHandler('62826fb39d7f3cb6a27f8573bc5e9b29')
 #SEGALA INISIALISASI ADA DI SINI HEHEHE
 
 #INISIALISASI USER ID
-user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #daldi
-user_id_tandu_1 ='' #ilham
-user_id_tandu_2 = '' #sarah
-user_id_obat_1 = '' #kahfi
-user_id_obat_2 = '' #rani
-user_id_tft_1 = '' #ivansa
-user_id_tft_2 = '' #fathin ?????
-user_id_humas = '' #atsila
+user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #faldi
+user_id_tandu_1 ='U36bb6303be7a1563a7d27d0ee2234ea5' #ilham
+user_id_tandu_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #sarah
+user_id_obat_1 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #kahfi
+user_id_obat_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #rani
+user_id_tft_1 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #ivansa
+user_id_tft_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #fathin ?????
+user_id_humas = 'U36bb6303be7a1563a7d27d0ee2234ea5' #atsila
 
 #RESOURCE - IMAGE
-image_menumedik_tandu = 'hehe'
-image_menumedik_obat = 'hehe'
-image_menumedik_tft = 'hehe'
-image_menumedik_lain = 'hehe'
+imgurl_tandu = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tandu/tandu.jpg'
+imgurl_obat = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/obat/obat.jpg'
+imgurl_obat_base = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/obat/obat_base.jpg'
+imgurl_obat_pj = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/obat/obat_pj.jpg'
+imgurl_obat_pilih = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/obat/obat_pilih.jpg'
+imgurl_tft = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tft/tft.jpg'
+imgurl_humas = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/humas/humas.jpg'
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -110,13 +113,38 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
 
-    # if text == 'Menu medik':
-    #     TextSendMessage(
-    #         text='Halo! Selamat datang di menu OA Medik!\n\nSilahkan pilih menu yang Anda inginkan'
-    #     )
-
-    #el
-    if text == 'profile':
+    if text == 'start!':
+        image_carousel_template = ImageCarouselTemplate(columns=[
+            ImageCarouselColumn(image_url=imgurl_tandu,
+                                action=PostbackTemplateAction(
+                                            label='Peminjaman tandu', #data='Peminjaman tandu',
+                                            text='Peminjaman tandu')),
+            ImageCarouselColumn(image_url=imgurl_obat,
+                                action=PostbackTemplateAction(
+                                            label='Peminjaman obat', #data='Peminjaman obat',
+                                            text='Peminjaman obat')),
+            ImageCarouselColumn(image_url=imgurl_tft,
+                                action=PostbackTemplateAction(
+                                            label='Pengadaan pelatihan medis', #data='Pengadaan pelatihan medis',
+                                            text='Pengadaan pelatihan medis')),
+            ImageCarouselColumn(image_url=imgurl_humas,
+                                action=PostbackTemplateAction(
+                                            label='Hubungi kami', #data='Hubungi kami',
+                                            text='Hubungi kami'))
+        ])
+        template_message = TemplateSendMessage(
+            alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
+        line_bot_api.reply_message(
+            event.reply_token, [
+                StickerSendMessage(
+                    package_id='3',
+                    sticker_id='242'
+                ),
+                TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM!\n\nSilahkan pilih menu di bawah ini'),
+                template_message
+            ]
+        )
+    elif text == 'profile':
         if isinstance(event.source, SourceUser):
             profile = line_bot_api.get_profile(event.source.user_id)
             line_bot_api.reply_message(
@@ -359,6 +387,9 @@ def handle_leave():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     if event.postback.data == 'ping':
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text='pong'))
+    elif event.postback.data == 'tandu':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text='pong'))
     elif event.postback.data == 'datetime_postback':
