@@ -118,13 +118,11 @@ def handle_text_message(event):
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
                                             label='Pinjam tandu',
-                                            text='Peminjaman tandu',
                                             data='tandu')),
             ImageCarouselColumn(image_url=imgurl_obat,
                                 action=PostbackTemplateAction(
                                             label='Pinjam obat', #data='Peminjaman obat',
-                                            text='Peminjaman obat',
-                                            data='ping')),
+                                            data='obat')),
             ImageCarouselColumn(image_url=imgurl_tft,
                                 action=PostbackTemplateAction(
                                             label='TFT medik',
