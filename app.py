@@ -400,24 +400,25 @@ def handle_leave():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     if event.postback.data == 'tandu':
-        # buttons_template = ButtonsTemplate(
-        #     title='Saya telah memahami SOP di atas', text='Klik tombol di bawah untuk melanjutkan', actions=
-        #         PostbackTemplateAction(
-        #             label='Ya', data='form_tandu',
-        #             text='Ya, Saya telah memahami SOP di atas. Dan saya tidak berbohong')
-        #      )
-        # template_message = TemplateSendMessage(
-        #     alt_text='Buttons alt text', template=buttons_template)
         buttons_template = ButtonsTemplate(
-            title='My buttons sample', text='Hello, my buttons', actions=[
-                URITemplateAction(
-                    label='Go to line.me', uri='https://line.me'),
-                PostbackTemplateAction(label='ping', data='ping'),
+            title='Saya telah memahami SOP di atas', text='Klik tombol di bawah untuk melanjutkan', actions= [
                 PostbackTemplateAction(
-                    label='ping with text', data='ping',
-                    text='ping'),
-                MessageTemplateAction(label='Translate Rice', text='米')
-            ])
+                    label='Ya', data='form_tandu',
+                    text='Ya, Saya telah memahami SOP di atas. Dan saya tidak berbohong')
+                ]
+             )
+        template_message = TemplateSendMessage(
+            alt_text='Buttons alt text', template=buttons_template)
+        # buttons_template = ButtonsTemplate(
+        #     title='My buttons sample', text='Hello, my buttons', actions=[
+        #         URITemplateAction(
+        #             label='Go to line.me', uri='https://line.me'),
+        #         PostbackTemplateAction(label='ping', data='ping'),
+        #         PostbackTemplateAction(
+        #             label='ping with text', data='ping',
+        #             text='ping'),
+        #         MessageTemplateAction(label='Translate Rice', text='米')
+        #     ])
         template_message = TemplateSendMessage(
             alt_text='Buttons alt text', template=buttons_template)
         line_bot_api.reply_message(
