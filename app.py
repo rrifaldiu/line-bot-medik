@@ -259,9 +259,9 @@ def handle_text_message(event):
                                                                     data='date_postback',
                                                                     mode='date')),
             ImageCarouselColumn(image_url=imgurl_humas,
-                                action=DatetimePickerTemplateAction(label='date',
-                                                                    data='date_postback',
-                                                                    mode='date'))
+                                action=PostbackTemplateAction(
+                                    label='ping with text', data='ping',
+                                    text='ping'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
