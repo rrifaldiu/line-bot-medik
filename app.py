@@ -173,7 +173,7 @@ def handle_text_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             ImageSendMessage(
-                original_content_url='https://via.placeholder.com/1024x1024', preview_image_url='https://via.placeholder.com/240x240'
+                original_content_url=imgurl_tft, preview_image_url='https://via.placeholder.com/240x240'
             )
         )
     
@@ -267,7 +267,8 @@ def handle_text_message(event):
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
+        line_bot_api.reply_message(event.reply_token, [template_message, TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini'),
+                ])
 
 
          # 
