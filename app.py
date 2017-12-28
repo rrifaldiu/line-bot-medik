@@ -117,12 +117,14 @@ def handle_text_message(event):
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
-                                            label='Peminjaman tandu', #data='Peminjaman tandu',
-                                            text='Peminjaman tandu')),
+                                            label='Peminjaman tandu',
+                                            text='Peminjaman tandu',
+                                            data='tandu')),
             ImageCarouselColumn(image_url=imgurl_obat,
                                 action=PostbackTemplateAction(
                                             label='Peminjaman obat', #data='Peminjaman obat',
-                                            text='Peminjaman obat')),
+                                            text='Peminjaman obat',
+                                            data='ping')),
             ImageCarouselColumn(image_url=imgurl_tft,
                                 action=PostbackTemplateAction(
                                             label='Pelatihan medis', #data='Pengadaan pelatihan medis',
@@ -130,7 +132,8 @@ def handle_text_message(event):
             ImageCarouselColumn(image_url=imgurl_humas,
                                 action=PostbackTemplateAction(
                                             label='Hubungi kami', #data='Hubungi kami',
-                                            text='Hubungi kami'))
+                                            text='Hubungi kami',
+                                            data='tandu'))
         ])
         template_message = TemplateSendMessage(
             alt_text='Silahkan pilih menu yang diinginkan', template=image_carousel_template)
@@ -390,10 +393,32 @@ def handle_leave():
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    if event.postback.data == 'ping':
+    if event.postback.data == 'tandu':
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text='pong'))
-    elif event.postback.data == 'tandu':
+            event.reply_token, [TextSendMessage(text='[SOP Peminjaman Tandu]\n' +
+                                                    '\n' +
+                                                    '1. Peminjaman dilakukan dengan terlebih dahulu menghubungi OA line Medik 2017 lalu mengikuti format yang telah disediakan.\n' +
+                                                    '\n' +
+                                                    '2. Peminjam lalu akan dihubungi untuk konfirmasi peminjaman jika peminjaman dapat dilakukan.\n' +
+                                                    '\n' +
+                                                    '3. Peminjam dan perwakilan dari medik kemudian akan bertemu untuk pengambilan tandu.\n' +
+                                                    'Untuk pengembalian, peminjam dan perwakilan medik akan bertemu kembali untuk penyerahan tandu.\n' +
+                                                    '\n' +
+                                                    '4. Setiap tandu dapat dipinjam oleh massa kampus selama tandu masih tersedia.\n' +
+                                                    '\n' +
+                                                    '5. Untuk peminjaman, peminjam diminta untuk menitipkan KTM sebagai jaminan.\n' +
+                                                    '\n' +
+                                                    '6. Peminjaman tandu gratis, tidak dipungut biaya.\n' +
+                                                    '\n' +
+                                                    '7. Peminjam wajib melakukan penggantian apabila tandu hilang, atau terjadi kerusakan pada tandu yang bukan diakibatkan oleh penggunaan.\n' +
+                                                    '\n' +
+                                                    '8. Peminjam diminta untuk mencuci mitela yang terdapat pada tandu apabila kotor setelah penggunaan.\n' +
+                                                    '\n' +
+                                                    '9. Selama durasi peminjaman, peminjam melakukan sendiri pengencangan dan perawatan terhadap tandu. Saat peminjaman, peminjam dapat mengutus perwakilan untuk diberi pengarahan tentang cara pengencangan dan perawatan tandu.'
+                                                )
+
+                                ])
+    elif event.postback.data == 'ping':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text='pong'))
     elif event.postback.data == 'datetime_postback':
