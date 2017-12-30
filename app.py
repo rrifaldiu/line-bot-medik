@@ -134,7 +134,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     text = event.message.text
-
+    profile = line_bot_api.get_profile(event.source.user_id)
     if text == 'menu':
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
@@ -341,131 +341,133 @@ def handle_text_message(event):
     elif text.startswith('balas_admin-'):
         user_id_balas = text[(text.find('-') + 1) : (text.find(':') - 1)]
         balasan = text[(text.find(':')+2) : ]
-        profile = line_bot_api.get_profile(event.source.user_id)
-        if (event.source.user_id == user_id_admin):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_admin.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_admin +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_tandu_1):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tandu_1 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tandu_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_tandu_2):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tandu_2 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tandu_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_obat_1):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_obat_1 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_obat_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_obat_2):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_obat_2 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_obat_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_tft_1):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tft_1 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tft_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_tft_2):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tft_2 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tft_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_humas_1):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_humas_1 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_humas_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif (event.source.user_id == user_id_humas_2):
-            line_bot_api.push_message(user_id_balas, [
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title()),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_humas_2 +'\u0027 diikuti dengan pesan Anda'),
-            ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_humas_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title())
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        else:
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Anda bukan admin')
-            )
+        # if (event.source.user_id == user_id_admin):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_admin.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_admin +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_tandu_1):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tandu_1 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_tandu_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_tandu_2):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tandu_2 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_tandu_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_obat_1):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_obat_1 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_obat_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_obat_2):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_obat_2 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_obat_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_tft_1):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tft_1 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_tft_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_tft_2):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tft_2 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_tft_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_humas_1):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_humas_1 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_humas_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif (event.source.user_id == user_id_humas_2):
+        #     line_bot_api.push_message(user_id_balas, [
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title()),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_humas_2 +'\u0027 diikuti dengan pesan Anda'),
+        #     ])
+        #     line_bot_api.push_message(user_id_admin, [
+        #         TextSendMessage(text=nama_humas_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+        #         TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title())
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # else:
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Anda bukan admin')
+        #     )
+        line_bot_api.reply_message(
+            event.reply_token, 
+            TextSendMessage(text='user_id_balas = ' + user_id_balas + '\n\nbalasan = ' + balasan)
+        )
 
 
 
 
     elif text.startswith('[Form Peminjaman Tandu]'):
-        profile = line_bot_api.get_profile(event.source.user_id)
         line_bot_api.multicast([user_id_admin
             #, user_id_tandu_1, user_id_tandu_2
             ], [
@@ -484,33 +486,14 @@ def handle_text_message(event):
                 )
         )
     elif text.startswith('[Form Peminjaman Obat '):
-        profile = line_bot_api.get_profile(event.source.user_id)
-        line_bot_api.push_message(user_id_obat_1, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
+        line_bot_api.multicast([user_id_admin
+            #, user_id_obat_1, user_id_obat_2
+            ], [
+            TextSendMessage(
+                text=text
             ),
             TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
-            ),
-            TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-            TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-        ])
-        line_bot_api.push_message(user_id_obat_2, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-            ),
-            TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
-            ),
-            TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-            TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-        ])
-        line_bot_api.push_message(user_id_admin, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-            ),
-            TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
+                text='Nama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url
             ),
             TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
             TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
@@ -521,33 +504,14 @@ def handle_text_message(event):
                 )
         )
     elif text.startswith('[Form TFT Medik]'):
-        profile = line_bot_api.get_profile(event.source.user_id)
-        line_bot_api.push_message(user_id_tft_1, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
+        line_bot_api.multicast([user_id_admin
+            #, user_id_tft_1, user_id_tft_2
+            ], [
+            TextSendMessage(
+                text=text
             ),
             TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
-            ),
-            TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-            TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-        ])
-        # line_bot_api.push_message(user_id_tft_2, [
-        #     ImageSendMessage(
-        #         original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-        #     ),
-        #     TextSendMessage(
-        #         text=text + '\nDisplay Name: ' + profile.display_name
-        #     ),
-        #     TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-        #     TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-        # ])
-        line_bot_api.push_message(user_id_admin, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-            ),
-            TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
+                text='Nama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url
             ),
             TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
             TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
@@ -558,33 +522,14 @@ def handle_text_message(event):
                 )
         )
     elif text.startswith('[Form Kontak]'):
-        profile = line_bot_api.get_profile(event.source.user_id)
-        line_bot_api.push_message(user_id_humas_1, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
+        line_bot_api.multicast([user_id_admin
+            #, user_id_humas_1, user_id_humas_2
+            ], [
+            TextSendMessage(
+                text=text
             ),
             TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
-            ),
-            TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-            TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-        ])
-        # line_bot_api.push_message(user_id_humas_2, [
-        #     ImageSendMessage(
-        #         original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-        #     ),
-        #     TextSendMessage(
-        #         text=text + '\nDisplay Name: ' + profile.display_name
-        #     ),
-        #     TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-        #     TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-        # ])
-        line_bot_api.push_message(user_id_admin, [
-            ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-            ),
-            TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
+                text='Nama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url
             ),
             TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
             TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
@@ -594,11 +539,8 @@ def handle_text_message(event):
                     text='Form telah dikirimkan\n\nKami akan memproses secepatnya. Harap bersabar dan menunggu'
                 )
         )
-
-
     elif text == 'profile':
         if isinstance(event.source, SourceUser):
-            profile = line_bot_api.get_profile(event.source.user_id)
             line_bot_api.reply_message(
                 event.reply_token, [
                     TextSendMessage(
@@ -612,103 +554,22 @@ def handle_text_message(event):
                     )
                 ]
             )
-            line_bot_api.push_message(event.source.user_id, TextSendMessage(text='Hello World!'))
-            line_bot_api.push_message(user_id_admin, TextSendMessage(text='Hello World!!'))
+            line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(
+                        text='Display name: ' + profile.display_name
+                    ),
+                    TextSendMessage(
+                        text='Status message: ' + profile.status_message
+                    ),
+                    TextSendMessage(
+                        text='User ID: ' + event.source.user_id
+                    )
+                ])
         else:
             line_bot_api.reply_message(
                 event.reply_token,
                 TextMessage(text="Bot can't use profile API without user ID"))
     
-    elif text == 'imgwithurl':
-        line_bot_api.reply_message(
-            event.reply_token,
-            ImageSendMessage(
-                original_content_url=imgurl_tft, preview_image_url='https://via.placeholder.com/240x240'
-            )
-        )
-
-    # elif text == 'menu':
-
-    elif text == 'bye':
-        if isinstance(event.source, SourceGroup):
-            line_bot_api.reply_message(
-                event.reply_token, TextMessage(text='Leaving group'))
-            line_bot_api.leave_group(event.source.group_id)
-        elif isinstance(event.source, SourceRoom):
-            line_bot_api.reply_message(
-                event.reply_token, TextMessage(text='Leaving group'))
-            line_bot_api.leave_room(event.source.room_id)
-        else:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextMessage(text="Bot can't leave from 1:1 chat"))
-    elif text == 'confirm':
-        confirm_template = ConfirmTemplate(text='Do it?', actions=[
-            MessageTemplateAction(label='Yes', text='Yes!'),
-            MessageTemplateAction(label='No', text='No!'),
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='Confirm alt text', template=confirm_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
-    elif text == 'buttons':
-        buttons_template = ButtonsTemplate(
-            title='My buttons sample', text='Hello, my buttons', actions=[
-                URITemplateAction(
-                    label='Go to line.me', uri='https://line.me'),
-                PostbackTemplateAction(label='ping', data='ping'),
-                PostbackTemplateAction(
-                    label='ping with text', data='ping',
-                    text='ping'),
-                MessageTemplateAction(label='Translate Rice', text='米')
-            ])
-        template_message = TemplateSendMessage(
-            alt_text='Buttons alt text', template=buttons_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
-    elif text == 'carousel':
-        carousel_template = CarouselTemplate(columns=[
-            CarouselColumn(text='hoge1', title='fuga1', actions=[
-                URITemplateAction(
-                    label='Go to line.me', uri='https://line.me'),
-                PostbackTemplateAction(label='ping', data='ping')
-            ]),
-            CarouselColumn(text='hoge2', title='fuga2', actions=[
-                PostbackTemplateAction(
-                    label='ping with text', data='ping',
-                    text='ping'),
-                MessageTemplateAction(label='Translate Rice', text='米')
-            ]),
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='Carousel alt text', template=carousel_template)
-        line_bot_api.reply_message(event.reply_token, template_message)
-    elif text == 'image_carousel':
-        image_carousel_template = ImageCarouselTemplate(columns=[
-            ImageCarouselColumn(image_url=imgurl_tandu,
-                                action=DatetimePickerTemplateAction(label='datetime',
-                                                                    data='datetime_postback',
-                                                                    mode='datetime')),
-            ImageCarouselColumn(image_url=imgurl_obat,
-                                action=DatetimePickerTemplateAction(label='date',
-                                                                    data='date_postback',
-                                                                    mode='date')),
-            ImageCarouselColumn(image_url=imgurl_tft,
-                                action=DatetimePickerTemplateAction(label='date',
-                                                                    data='date_postback',
-                                                                    mode='date')),
-            ImageCarouselColumn(image_url=imgurl_humas,
-                                action=PostbackTemplateAction(
-                                    label='pingwithtext',
-                                    #text='ping',
-                                    data='ping'
-                                )
-                            )
-        ])
-        template_message = TemplateSendMessage(
-            alt_text='ImageCarousel alt text', template=image_carousel_template)
-        line_bot_api.reply_message(event.reply_token, [template_message, TextSendMessage(text='Halo! Selamat datang di OA Medik OSKM! Silahkan pilih menu di bawah ini \uDBC0'),
-                ])
-    elif text == 'imagemap':
-        pass
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text))
