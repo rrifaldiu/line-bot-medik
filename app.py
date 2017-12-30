@@ -60,7 +60,7 @@ handler = WebhookHandler('62826fb39d7f3cb6a27f8573bc5e9b29')
 
 #INISIALISASI USER ID
 user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #faldi
-user_id_tandu_1 ='U36bb6303be7a1563a7d27d0ee2234ea5' #ilham
+user_id_tandu_1 ='U209fc3f8d8b4728d808d31264cdaaeb8' #ilham
 user_id_tandu_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #sarah
 user_id_obat_1 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #kahfi
 user_id_obat_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #rani
@@ -465,7 +465,7 @@ def handle_text_message(event):
 
     elif text.startswith('[Form Peminjaman Tandu]'):
         profile = line_bot_api.get_profile(event.source.user_id)
-        line_bot_api.multicast([user_id_admin, user_id_tandu_1, user_id_tandu_2], [
+        line_bot_api.multicast([user_id_admin, user_id_tandu_1], [
             # ImageSendMessage(
             #     original_content_url=profile.picture_url, preview_image_url=profile.picture_url
             # ),
