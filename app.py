@@ -167,7 +167,6 @@ def handle_text_message(event):
             ]
         )
 
-
     elif text.startswith('balas-'):
         profile = line_bot_api.get_profile(event.source.user_id)
         if text.startswith('balas-' + nama_admin):
@@ -182,10 +181,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_tandu_1):
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_tandu_1.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tandu_1)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_tandu_1], [
+                TextSendMessage(text=nama_tandu_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_tandu_1)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -194,17 +192,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_tandu_2):
-            line_bot_api.push_message(user_id_tandu_2, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tandu_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_tandu_2.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tandu_2)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_tandu_2], [
+                TextSendMessage(text=nama_tandu_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_tandu_2)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -213,17 +203,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_obat_1):
-            line_bot_api.push_message(user_id_obat_1, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_obat_1)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_obat_1.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_obat_1)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_obat_1], [
+                TextSendMessage(text=nama_obat_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_obat_1)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -232,17 +214,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_obat_2):
-            line_bot_api.push_message(user_id_obat_2, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_obat_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_obat_2.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_obat_2)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_obat_2], [
+                TextSendMessage(text=nama_obat_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_obat_2)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -251,17 +225,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_tft_1):
-            line_bot_api.push_message(user_id_tft_1, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tft_1)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_tft_1.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tft_1)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_tft_1], [
+                TextSendMessage(text=nama_tft_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_tft_1)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -270,17 +236,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_tft_2):
-            line_bot_api.push_message(user_id_tft_2, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tft_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_tft_2.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_tft_2)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_tft_2], [
+                TextSendMessage(text=nama_tft_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_tft_2)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -289,17 +247,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_humas_1):
-            line_bot_api.push_message(user_id_humas_1, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_humas_1)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_humas_1.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_humas_1)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_humas_1], [
+                TextSendMessage(text=nama_humas_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_humas_1)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -308,17 +258,9 @@ def handle_text_message(event):
                 TextSendMessage(text='Pesan telah terkirim')
             )
         elif text.startswith('balas-' + nama_humas_2):
-            line_bot_api.push_message(user_id_humas_2, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_humas_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text=nama_humas_2.title() + 'menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_humas_2)) : ]),
+            line_bot_api.multicast([user_id_admin, user_id_humas_2], [
+                TextSendMessage(text=nama_humas_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_humas_2)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -331,11 +273,6 @@ def handle_text_message(event):
                 event.reply_token, 
                 TextSendMessage(text='Nama admin tidak ditemukan\nPastikan nama admin tidak dituliskan dengan kapital')
             )
-
-
-
-
-
 
     elif text.startswith('balas_admin-'):
         user_id_balas = text[(text.find('-') + 1) : (text.find(':'))]
