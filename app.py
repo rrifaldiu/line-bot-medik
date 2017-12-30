@@ -71,14 +71,14 @@ nama_humas_2 = 'benito'
 
 #INISIALISASI USER ID
 user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #faldi
-user_id_tandu_1 = None #ilham
-user_id_tandu_2 = None #sarah
-user_id_obat_1 = None #kahfi
-user_id_obat_2 = None #rani
-user_id_tft_1 = None #ivansa
-user_id_tft_2 = None #fathin ?????
-user_id_humas_1 = None #atsila
-user_id_humas_2 = None #benito ?????
+user_id_tandu_1 = 'tandu1' #ilham
+user_id_tandu_2 = 'tandu2' #sarah
+user_id_obat_1 = 'obat1' #kahfi
+user_id_obat_2 = 'obat2' #rani
+user_id_tft_1 = 'tft1' #ivansa
+user_id_tft_2 = 'tft2' #fathin ?????
+user_id_humas_1 = 'humas1' #atsila
+user_id_humas_2 = 'humas2' #benito ?????
 
 #RESOURCE - IMAGE
 imgurl_tandu = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tandu/tandu.jpg'
