@@ -58,27 +58,27 @@ handler = WebhookHandler('62826fb39d7f3cb6a27f8573bc5e9b29')
 
 #SEGALA INISIALISASI ADA DI SINI HEHEHE
 
-#INISIALISASI USER ID
-user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #faldi
-user_id_tandu_1 ='U209fc3f8d8b4728d808d31264cdaaeb8' #ilham
-user_id_tandu_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #sarah
-user_id_obat_1 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #kahfi
-user_id_obat_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #rani
-user_id_tft_1 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #ivansa
-user_id_tft_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #fathin ?????
-user_id_humas_1 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #atsila
-user_id_humas_2 = 'U36bb6303be7a1563a7d27d0ee2234ea5' #benito ?????
-
 #INISIALISASI NAMA
 nama_admin = 'faldi'
-nama_tandu_1 = 'faldi'
-nama_tandu_2 = 'faldi'
-nama_obat_1 = 'faldi'
-nama_obat_2 = 'faldi'
-nama_tft_1 = 'faldi'
-nama_tft_2 = 'faldi'
-nama_humas_1 = 'faldi'
-nama_humas_2 = 'faldi'
+nama_tandu_1 = 'ilham'
+nama_tandu_2 = 'sarah'
+nama_obat_1 = 'kahfi'
+nama_obat_2 = 'rany'
+nama_tft_1 = 'invannsa'
+nama_tft_2 = 'fathin'
+nama_humas_1 = 'atsila'
+nama_humas_2 = 'benito'
+
+#INISIALISASI USER ID
+user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #faldi
+user_id_tandu_1 = None #ilham
+user_id_tandu_2 = None #sarah
+user_id_obat_1 = None #kahfi
+user_id_obat_2 = None #rani
+user_id_tft_1 = None #ivansa
+user_id_tft_2 = None #fathin ?????
+user_id_humas_1 = None #atsila
+user_id_humas_2 = None #benito ?????
 
 #RESOURCE - IMAGE
 imgurl_tandu = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tandu/tandu.jpg'
