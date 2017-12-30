@@ -465,12 +465,12 @@ def handle_text_message(event):
 
     elif text.startswith('[Form Peminjaman Tandu]'):
         profile = line_bot_api.get_profile(event.source.user_id)
-        line_bot_api.push_message(user_id_admin, [
+        line_bot_api.multicast([user_id_admin, user_id_tandu_1, user_id_tandu_2], [
             # ImageSendMessage(
             #     original_content_url=profile.picture_url, preview_image_url=profile.picture_url
             # ),
             TextSendMessage(
-                text=text + '\nDisplay Name: ' + profile.display_name
+                text=text + '\nDisplay Name: ' + profile.display_name + '\nDisplay Pic: ' + profile.picture_url
             ),
             TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
             TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
