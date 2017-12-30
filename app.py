@@ -171,10 +171,9 @@ def handle_text_message(event):
     elif text.startswith('balas-'):
         profile = line_bot_api.get_profile(event.source.user_id)
         if text.startswith('balas-' + nama_admin):
-            line_bot_api.push_message(user_id_admin, [ImageSendMessage(
-                original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-                ),
-                TextSendMessage(text='Menerima balasan dari ' + profil.display_name + ':\n' + text[(6+len(nama_admin)) : ]),
+            line_bot_api.push_message(user_id_admin, [
+                TextSendMessage(text='Menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+                TextSendMessage(text=text[(6+len(nama_admin)) : ]),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
                 TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
             ])
@@ -355,10 +354,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tandu_1 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tandu_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_tandu_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_1.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -368,10 +368,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tandu_2 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tandu_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_tandu_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tandu_2.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -381,10 +382,13 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_obat_1 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_obat_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_obat_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_1.title())
+                ])
+            
+
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -394,10 +398,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_obat_2 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_obat_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_obat_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_obat_2.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -407,10 +412,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tft_1 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tft_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_tft_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_1.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -420,10 +426,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_tft_2 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_tft_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_tft_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_tft_2.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -433,10 +440,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_humas_1 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_humas_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_humas_1 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_1.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -446,10 +454,11 @@ def handle_text_message(event):
                 TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title()),
                 TextSendMessage(text='Untuk membalas pesan di atas, silahkan ketik \u0027balas-' + nama_humas_2 +'\u0027 diikuti dengan pesan Anda'),
             ])
-            line_bot_api.push_message(user_id_admin, [
-                TextSendMessage(text=nama_humas_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
-                TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title())
-            ])
+            if (user_id_admin != user_id_balas):
+                line_bot_api.push_message(user_id_admin, [
+                    TextSendMessage(text=nama_humas_2 + ' membalas untuk ' + profile.display_name + ' (User ID = ' + profile.user_id + ')'),
+                    TextSendMessage(text=balasan + '\n\nSalam, ' + nama_humas_2.title())
+                ])
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
@@ -459,9 +468,6 @@ def handle_text_message(event):
                 event.reply_token, 
                 TextSendMessage(text='Anda bukan admin')
             )
-
-
-
 
     elif text.startswith('[Form Peminjaman Tandu]'):
         line_bot_api.multicast([user_id_admin
