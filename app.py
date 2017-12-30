@@ -64,18 +64,18 @@ nama_tandu_1 = 'ilham'
 nama_tandu_2 = 'sarah'
 nama_obat_1 = 'kahfi'
 nama_obat_2 = 'rany'
-nama_tft_1 = 'invannsa'
+nama_tft_1 = 'ivannsa'
 nama_tft_2 = 'fathin'
 nama_humas_1 = 'atsila'
 nama_humas_2 = 'benito'
 
 #INISIALISASI USER ID
 user_id_admin = 'U36bb6303be7a1563a7d27d0ee2234ea5' #faldi
-user_id_tandu_1 = 'tandu1' #ilham
+user_id_tandu_1 = 'Ua84e82b214cc4cf6783aa167d9ec3ce8' #ilham
 user_id_tandu_2 = 'tandu2' #sarah
-user_id_obat_1 = 'obat1' #kahfi
+user_id_obat_1 = 'Ufa385bd386f3634b04f5ca57360b0a8a' #kahfi
 user_id_obat_2 = 'obat2' #rani
-user_id_tft_1 = 'tft1' #ivansa
+user_id_tft_1 = 'Uc21abb39fe1b5c1ab376ba9b5209ccce' #ivansa
 user_id_tft_2 = 'tft2' #fathin ?????
 user_id_humas_1 = 'humas1' #atsila
 user_id_humas_2 = 'humas2' #benito ?????
@@ -135,7 +135,7 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
     profile = line_bot_api.get_profile(event.source.user_id)
-    if text == 'menu':
+    if text.lower() == 'menu':
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url=imgurl_tandu,
                                 action=PostbackTemplateAction(
@@ -167,9 +167,9 @@ def handle_text_message(event):
             ]
         )
 
-    elif text.startswith('balas-'):
+    elif text.lower().startswith('balas-'):
         profile = line_bot_api.get_profile(event.source.user_id)
-        if text.startswith('balas-' + nama_admin):
+        if text.lower().startswith('balas-' + nama_admin):
             line_bot_api.push_message(user_id_admin, [
                 TextSendMessage(text='Menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
                 TextSendMessage(text=text[(6+len(nama_admin)) : ]),
@@ -180,7 +180,7 @@ def handle_text_message(event):
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
             )
-        elif text.startswith('balas-' + nama_tandu_1):
+        elif text.lower().startswith('balas-' + nama_tandu_1):
             line_bot_api.multicast([user_id_admin, user_id_tandu_1], [
                 TextSendMessage(text=nama_tandu_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
                 TextSendMessage(text=text[(6+len(nama_tandu_1)) : ]),
@@ -191,18 +191,18 @@ def handle_text_message(event):
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
             )
-        elif text.startswith('balas-' + nama_tandu_2):
-            line_bot_api.multicast([user_id_admin, user_id_tandu_2], [
-                TextSendMessage(text=nama_tandu_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
-                TextSendMessage(text=text[(6+len(nama_tandu_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif text.startswith('balas-' + nama_obat_1):
+        # elif text.lower().startswith('balas-' + nama_tandu_2):
+        #     line_bot_api.multicast([user_id_admin, user_id_tandu_2], [
+        #         TextSendMessage(text=nama_tandu_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+        #         TextSendMessage(text=text[(6+len(nama_tandu_2)) : ]),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
+        #         TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        elif text.lower().startswith('balas-' + nama_obat_1):
             line_bot_api.multicast([user_id_admin, user_id_obat_1], [
                 TextSendMessage(text=nama_obat_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
                 TextSendMessage(text=text[(6+len(nama_obat_1)) : ]),
@@ -213,18 +213,18 @@ def handle_text_message(event):
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
             )
-        elif text.startswith('balas-' + nama_obat_2):
-            line_bot_api.multicast([user_id_admin, user_id_obat_2], [
-                TextSendMessage(text=nama_obat_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
-                TextSendMessage(text=text[(6+len(nama_obat_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif text.startswith('balas-' + nama_tft_1):
+        # elif text.lower().startswith('balas-' + nama_obat_2):
+        #     line_bot_api.multicast([user_id_admin, user_id_obat_2], [
+        #         TextSendMessage(text=nama_obat_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+        #         TextSendMessage(text=text[(6+len(nama_obat_2)) : ]),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
+        #         TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        elif text.lower().startswith('balas-' + nama_tft_1):
             line_bot_api.multicast([user_id_admin, user_id_tft_1], [
                 TextSendMessage(text=nama_tft_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
                 TextSendMessage(text=text[(6+len(nama_tft_1)) : ]),
@@ -235,46 +235,46 @@ def handle_text_message(event):
                 event.reply_token, 
                 TextSendMessage(text='Pesan telah terkirim')
             )
-        elif text.startswith('balas-' + nama_tft_2):
-            line_bot_api.multicast([user_id_admin, user_id_tft_2], [
-                TextSendMessage(text=nama_tft_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
-                TextSendMessage(text=text[(6+len(nama_tft_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif text.startswith('balas-' + nama_humas_1):
-            line_bot_api.multicast([user_id_admin, user_id_humas_1], [
-                TextSendMessage(text=nama_humas_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
-                TextSendMessage(text=text[(6+len(nama_humas_1)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
-        elif text.startswith('balas-' + nama_humas_2):
-            line_bot_api.multicast([user_id_admin, user_id_humas_2], [
-                TextSendMessage(text=nama_humas_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
-                TextSendMessage(text=text[(6+len(nama_humas_2)) : ]),
-                TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
-                TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
-            ])
-            line_bot_api.reply_message(
-                event.reply_token, 
-                TextSendMessage(text='Pesan telah terkirim')
-            )
+        # elif text.lower().startswith('balas-' + nama_tft_2):
+        #     line_bot_api.multicast([user_id_admin, user_id_tft_2], [
+        #         TextSendMessage(text=nama_tft_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+        #         TextSendMessage(text=text[(6+len(nama_tft_2)) : ]),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
+        #         TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif text.lower().startswith('balas-' + nama_humas_1):
+        #     line_bot_api.multicast([user_id_admin, user_id_humas_1], [
+        #         TextSendMessage(text=nama_humas_1.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+        #         TextSendMessage(text=text[(6+len(nama_humas_1)) : ]),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
+        #         TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
+        # elif text.lower().startswith('balas-' + nama_humas_2):
+        #     line_bot_api.multicast([user_id_admin, user_id_humas_2], [
+        #         TextSendMessage(text=nama_humas_2.title() + ' menerima balasan dari:\nNama LINE: ' + profile.display_name + '\nFoto: ' + profile.picture_url),
+        #         TextSendMessage(text=text[(6+len(nama_humas_2)) : ]),
+        #         TextSendMessage(text='Untuk membalas pesan di atas, silahkan gunakan format di bawah:'),
+        #         TextSendMessage(text='balas_admin-' + profile.user_id + ':\n<pesan Anda>')
+        #     ])
+        #     line_bot_api.reply_message(
+        #         event.reply_token, 
+        #         TextSendMessage(text='Pesan telah terkirim')
+        #     )
         else:
             line_bot_api.reply_message(
                 event.reply_token, 
                 TextSendMessage(text='Nama admin tidak ditemukan\nPastikan nama admin tidak dituliskan dengan kapital')
             )
 
-    elif text.startswith('balas_admin-'):
+    elif text.lower().startswith('balas_admin-'):
         user_id_balas = text[(text.find('-') + 1) : (text.find(':'))]
         balasan = text[(text.find(':')+2) : ]
         if (event.source.user_id == user_id_admin):
@@ -426,7 +426,8 @@ def handle_text_message(event):
         )
     elif text.startswith('[Form Peminjaman Obat '):
         line_bot_api.multicast([user_id_admin
-            #, user_id_obat_1, user_id_obat_2
+            , user_id_obat_1
+            #, user_id_obat_2
             ], [
             TextSendMessage(
                 text=text
@@ -444,7 +445,8 @@ def handle_text_message(event):
         )
     elif text.startswith('[Form TFT Medik]'):
         line_bot_api.multicast([user_id_admin
-            #, user_id_tft_1, user_id_tft_2
+            , user_id_tft_1
+            #, user_id_tft_2
             ], [
             TextSendMessage(
                 text=text
@@ -478,7 +480,7 @@ def handle_text_message(event):
                     text='Form telah dikirimkan\n\nKami akan memproses secepatnya. Harap bersabar dan menunggu'
                 )
         )
-    elif text == 'profile':
+    elif text.lower() == 'profile':
         if isinstance(event.source, SourceUser):
             line_bot_api.reply_message(
                 event.reply_token, [
@@ -511,7 +513,7 @@ def handle_text_message(event):
     
     else:
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=event.message.text))
+            event.reply_token, TextSendMessage(text='Maaf, perintah yang Anda masukkan salah. Ketik "menu" untuk melihat menu medik'))
 
 
 @handler.add(MessageEvent, message=LocationMessage)
@@ -615,7 +617,7 @@ def handle_postback(event):
                 ]
             )
         template_message = TemplateSendMessage(
-            alt_text='Pahamilah SOP', template=buttons_template)
+            alt_text='[SOP Peminjaman Tandu]', template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='[SOP Peminjaman Tandu]\n' +
                                                     '\n' +
@@ -648,7 +650,7 @@ def handle_postback(event):
                 ]
             )
         template_message = TemplateSendMessage(
-            alt_text='Pahamilah SOP', template=buttons_template)
+            alt_text='[SOP Peminjaman Obat]', template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='[SOP Peminjaman Obat]\n' +
                                                     '\n' +
@@ -690,7 +692,7 @@ def handle_postback(event):
             ])
         ])
         template_message = TemplateSendMessage(
-            alt_text='Carousel alt text', template=carousel_template)
+            alt_text='Silahkan pilih jenis obat', template=carousel_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='Silahkan pilih jenis obat yang ingin Anda pinjam\n'),
                 template_message
@@ -805,7 +807,7 @@ def handle_postback(event):
                 ]
             )
         template_message = TemplateSendMessage(
-            alt_text='Pahamilah SOP', template=buttons_template)
+            alt_text='[SOP TFT Medik]', template=buttons_template)
         line_bot_api.reply_message(
             event.reply_token, [TextSendMessage(text='[SOP TFT Medik]\n' +
                                                     '\n' +
