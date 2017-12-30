@@ -466,7 +466,9 @@ def handle_text_message(event):
 
     elif text.startswith('[Form Peminjaman Tandu]'):
         profile = line_bot_api.get_profile(event.source.user_id)
-        line_bot_api.multicast([user_id_admin, user_id_tandu_1, user_id_tandu_2], [
+        line_bot_api.multicast([user_id_admin
+            #, user_id_tandu_1, user_id_tandu_2
+            ], [
             TextSendMessage(
                 text=text
             ),
