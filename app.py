@@ -88,6 +88,7 @@ imgurl_obat_pj = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/mas
 imgurl_obat_satuan = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/obat/obat_pilih.jpg'
 imgurl_tft = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/tft/tft.jpg'
 imgurl_humas = 'https://raw.githubusercontent.com/rrifaldiu/line-bot-medik/master/static/res/jpg/humas/humas.jpg'
+imgurl_dp = 'https://via.placeholder.com/240x240'
 
 form_template = ('\n' +
                 'Nama : \n' +
@@ -466,9 +467,9 @@ def handle_text_message(event):
     elif text.startswith('[Form Peminjaman Tandu]'):
         profile = line_bot_api.get_profile(event.source.user_id)
         line_bot_api.push_message(user_id_admin, [
-            # ImageSendMessage(
-            #     original_content_url=profile.picture_url, preview_image_url=profile.picture_url
-            # ),
+            ImageSendMessage(
+                original_content_url=profile.picture_url, preview_image_url=imgurl_dp
+            ),
             TextSendMessage(
                 text=text + '\nDisplay Name: ' + profile.display_name + '\nDisplay Pic: ' + profile.picture_url
             ),
